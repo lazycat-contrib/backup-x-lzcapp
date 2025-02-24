@@ -1,0 +1,9 @@
+services:
+    backup-x:
+        container_name: backup-x
+        restart: always
+        ports:
+            - 9977:9977
+        volumes:
+            - /opt/backup-x-files:/app/backup-x-files
+        image: jeessy/backup-x
