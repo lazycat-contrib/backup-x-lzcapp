@@ -5,10 +5,9 @@ application:
   upstreams:
     - location: /
       backend: http://backup-x:9977/
-
 services:
   backup-x:
     # upstream: jeessy/backup-x:v2.9.0
-    image: jeessy/backup-x:v2.9.0
+    image: registry.lazycat.cloud/czyt/jeessy/backup-x:e185086ba0329f62
     binds:
       - /lzcapp/var/backup-x-files:/app/backup-x-files
