@@ -1,0 +1,40 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/backup-x.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: backup-x
+
+build:
+  run_buildscript: false
+
+images:
+  - id: backup-x
+    target: service
+    service: backup-x
+    source: jeessy/backup-x
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    changelog_locales: [zh, en]
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: backup-x
+    summary: "带Web界面的数据库/文件备份增强工具"
